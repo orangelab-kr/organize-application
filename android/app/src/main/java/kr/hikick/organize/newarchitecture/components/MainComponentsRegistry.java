@@ -1,4 +1,4 @@
-package com.organizeapplication.newarchitecture.components;
+package kr.hikick.organize.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

@@ -1,4 +1,4 @@
-package com.organizeapplication;
+package kr.hikick.organize;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

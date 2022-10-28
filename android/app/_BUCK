@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.organizeapplication",
+    package = "kr.hikick.organize",
 )
 
 android_resource(
     name = "res",
-    package = "com.organizeapplication",
+    package = "kr.hikick.organize",
     res = "src/main/res",
 )
 
