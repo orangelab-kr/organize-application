@@ -26,11 +26,6 @@ target 'OrganizeApplication' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'OrganizeApplicationTests' do
-    inherit! :complete
-    # Pods for testing
-  end
-
   post_install do |installer|
     react_native_post_install(
       installer,
