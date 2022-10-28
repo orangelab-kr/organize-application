@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "141121090840",
+    "project_id": "hikick-organize",
+    "storage_bucket": "hikick-organize.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141121090840:android:be1155fbafe6193be7da6d",
+        "android_client_info": {
+          "package_name": "kr.hikick.organize"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141121090840-9ja2v1h53mso1lh2jbqqlu09iib3vtce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwYYgf7fNeycOEdFqsWP76S0vxkgdScNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141121090840-9ja2v1h53mso1lh2jbqqlu09iib3vtce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
