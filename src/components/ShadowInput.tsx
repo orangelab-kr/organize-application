@@ -79,6 +79,7 @@ const Container = styled.View`
 `;
 
 const Input = styled(FormatterInput)`
+  color: #000;
   flex: auto;
   font-size: 18px;
   font-weight: 600;

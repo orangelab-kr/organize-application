@@ -1,18 +1,25 @@
+/* eslint-disable react-native/no-inline-styles */
 import 'moment/locale/ko';
 
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
   StatusBar,
+  Text,
   View,
 } from 'react-native';
-import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
-import React, {useEffect, useMemo, useState} from 'react';
+import BottomSheet, {
+  BottomSheetFlatList,
+  TouchableOpacity,
+} from '@gorhom/bottom-sheet';
 import {screenHeight, screenWidth} from './constants/screenSize';
+import {useEffect, useMemo, useState} from 'react';
 
 import {CameraScreen} from 'react-native-camera-kit';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {KickboardItem} from './components/KickboardItem';
+import {Label} from './components/Label';
+import React from 'react';
 import {ShadowInput} from './components/ShadowInput';
 import axios from 'axios';
 import firestore from '@react-native-firebase/firestore';
@@ -75,15 +82,19 @@ const App = () => {
 
       setRecentQrcode(url);
       const kickboardCode = await getKickboardCodeByUrl(url);
-      await kickboardCol.doc(kickboardCode).set({
-        kickboardCode,
-        createdAt: new Date(),
-      });
+      await createKickboard(kickboardCode);
     } catch (err) {
       console.log(err);
     } finally {
       setLoading(false);
     }
+  };
+
+  const createKickboardByInput = () => createKickboard(search);
+  const createKickboard = async (kickboardCode: string) => {
+    await kickboardCol
+      .doc(kickboardCode)
+      .set({kickboardCode, createdAt: new Date()});
   };
 
   return (
@@ -98,15 +109,41 @@ const App = () => {
             hideControls
           />
           <BottomSheet
-            snapPoints={['40%', '80%']}
+            snapPoints={['45%', '80%']}
             enableHandlePanningGesture={false}>
             <BottomContainer>
+              <Label>{searchedKickboards.length}개 킥보드</Label>
               <ShadowInput
                 placeholder="킥보드 코드를 입력하세요."
                 value={search}
                 onChangeText={setSearch}
                 onFormat={r => r.toUpperCase()}
               />
+              {search.length === 6 && searchedKickboards.length <= 0 && (
+                <View style={{display: 'flex', alignItems: 'center'}}>
+                  <TouchableOpacity
+                    onPress={createKickboardByInput}
+                    style={{
+                      borderRadius: 10,
+                      backgroundColor: '#000',
+                      width: screenWidth * 0.85,
+                      padding: 15,
+                    }}>
+                    <Text
+                      style={{
+                        fontSize: 15,
+                        textAlign: 'center',
+                        fontWeight: '700',
+                        color: '#fff',
+                      }}>
+                      등록
+                    </Text>
+                  </TouchableOpacity>
+                  <Label style={{fontSize: 15, marginTop: 10}}>
+                    등록되지 않은 킥보드입니다.
+                  </Label>
+                </View>
+              )}
               <BottomSheetFlatList
                 data={searchedKickboards}
                 keyExtractor={i => i.kickboardCode}
